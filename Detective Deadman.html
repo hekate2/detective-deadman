@@ -1,0 +1,41 @@
+<!DOCTYPEhtml>
+<html>
+	<head>
+		<title>DETECTIVE DEADMAN</title>
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<link rel="icon" href="favicon.ico" type="image/ico">
+		<link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
+		<meta charset="UTF-8">
+		<script type="text/javascript">
+		function play() {
+	        var audio = document.getElementById("audio");
+	        audio.loop = true;
+	        audio.play();
+	        window.open('game.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502')
+	      }
+		</script>
+	</head>
+	<body>
+		<div id="center">
+			<audio id="audio" src="tims.ogg"></audio>
+			
+			<img src="torch.gif" width=" 50px">
+
+			<img src="skull.png" width="150px" height="200px" style="padding: 20px;">
+
+			<img src="torch.gif" width=" 50px">
+			<br>
+			<img src="text.jpg">
+			<br>
+			<a onclick="play()">
+				PLAY...
+			</a>
+			<p>
+				<span style="font-size: 10pt; font-family: times; margin: 0; margin-block-start: 0;
+   				 margin-block-end: 0;">
+				for the best experience, turn your sound on
+				</span>
+			</p>
+		</div>
+	</body>
+</html>

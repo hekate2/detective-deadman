@@ -1,0 +1,138 @@
+<!DOCTYPEhtml>
+<html>
+	<head>
+		<title>DETECTIVE DEADMAN</title>
+		<link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="encounterstyling.css">
+	</head>
+	<body onload="onpageload()">
+			<canvas id="myCanvas" width="750" height="500">
+				Your browser does not support the HTML5 canvas tag.
+			</canvas>
+			<img id="paul" src="Paul.png">
+			<div id="envelope" style="color: white;">
+				<div id="name" style="visibility: hidden;">
+					NAME: paul
+				</div>
+				<div id="perk" style="visibility: hidden;">
+					PERKS: perfectionist		
+				</div>
+				<div id="perka" style="visibility: hidden;">
+						avoidant
+				</div>
+				<div id="occupation" style="visibility: hidden;">
+					OCCUPATION: banker
+				</div>
+				<div id="relation" style="visibility: hidden;">
+					RELATIONSHIP: neighbor
+				</div>
+				<div id="temperament" style="visibility: hidden;">
+					TEMPERAMENT: phlegmatic
+				</div>
+			</div>
+			<script type="text/javascript">
+				var c = document.getElementById("myCanvas");
+				var ctx = c.getContext("2d");
+				 
+				var t = 0;
+				var q = 4;
+				var i = 7;
+				var speecharray = [];
+
+				speecharray [0] = "You must be new in town, I'm Paul - pleasure to see a new face!";
+				speecharray [1] = "Have you seen our lawn? I've personally trimmed each grassblade to an even inch";
+				speecharray [2] = "Don't you just love a nice clean driveway?";
+				speecharray [3] = "Long day at the bank today!";
+				speecharray [4] = "Oh, yes, Benny... but I don't like to dwell on such things...";
+				speecharray [5] = "I-i lived next to door to him. I mean, imagine if the killer confused our houses? What then?";
+				speecharray [6] = "Im sure that crook Cain would like to tell you all about it";
+				speecharray [7] = "... (he pretends not to hear you)";
+				speecharray [8] = "I really don't want to cause any trouble";
+				speecharray [9] = "I don't think here's the place for these kinds of things";
+
+				function talk() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[t], 25, 50, 700, 300);
+
+				var img = document.getElementById("paul");
+				ctx.drawImage(img, 100, 100);
+
+				 	if (t == 0) {
+				 		var name = document.getElementById('name'); //done
+				 		name.style.visibility = "visible";
+				 		t++;
+				 	} else if (t == 2){
+				 		var perk = document.getElementById('perk'); 
+				 		perk.style.visibility = "visible";
+				 		t++;
+				 	} else if (t==3) {
+				 		var work = document.getElementById('occupation');
+				 		work.style.visibility = "visible";
+				 		t = 0;
+				 		} else if (t >= 0 && t <= 3) {
+				 			t++;
+				 		}
+				}
+				function question() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[q], 25, 50, 700, 300);
+
+				var img = document.getElementById("paul");
+				ctx.drawImage(img, 100, 100);
+
+				 	if (q == 5) {
+				 		var relation = document.getElementById('relation'); //done
+				 		relation.style.visibility = "visible";
+				 		q++;
+				 	} else if (q == 6) {
+				 		var perka = document.getElementById('perka'); //done
+				 		perka.style.visibility = "visible";
+				 		q = 4;
+				 	} else if (q >= 4 && q <= 6){
+				 		q++;
+				 	}
+
+				}
+				function intimidate() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[i], 25, 50, 700, 300);
+
+				var img = document.getElementById("paul");
+				ctx.drawImage(img, 100, 100);
+
+				 	if (i == 9) {
+				 		var temp = document.getElementById('temperament');
+				 		temp.style.visibility = "visible";
+				 		i = 7;
+				 	} else if (i >= 7){
+				 		i++;
+				 	}
+
+				}
+				function leave() {
+					window.close('encounter2.html');
+				}
+			function onpageload() {
+
+				  var img = document.getElementById("paul");
+				  ctx.drawImage(img, 100, 100);
+
+			}
+
+			</script>
+		</div>
+		<a onclick="talk()" style="top: 300px; left: 100px;">Talk</a>
+		<a onclick="question()" style="top: 350px; left: 100px">Question</a>
+		<a onclick="intimidate()" style="top: 400px; left: 100px;">Intimidate</a>
+		<a onclick="leave()" style="top: 400px; left: 600px;">Leave</a>
+	</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPEhtml>
+<html>
+	<head>
+		<title>DETECTIVE DEADMAN</title>
+		<link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="encounterstyling.css">
+	</head>
+	</head>
+	<body onload="onpageload()">
+			<canvas id="myCanvas" width="750" height="500">
+				Your browser does not support the HTML5 canvas tag.
+			</canvas>
+			<img id="oldwoman" src="oldwoman.png" style="visibility: hidden">
+			<div id="envelope" style="color: white;">
+				<div id="name" style="visibility: hidden;">
+					NAME: the old lady
+				</div>
+				<div id="perk" style="visibility: hidden;">
+					PERKS: deaf
+				</div>
+				<div id="relation" style="visibility: hidden;">
+					RELATIONSHIP: neighbor 
+				</div>
+				<div id="temperament" style="visibility: hidden;">
+					TEMPERAMENT: sanguine
+				</div>
+			</div>
+			<script type="text/javascript">
+				var c = document.getElementById("myCanvas");
+				var ctx = c.getContext("2d");
+				 
+				var t = 0;
+				var q = 4;
+				var i = 7;
+				var speecharray = [];
+
+				speecharray [0] = "I'm known as the old lady, and I like it that way.";
+				speecharray [1] = "Did you say something dear?";
+				speecharray [2] = "I'm sorry, I can't hear out of this ear";
+				speecharray [3] = "Could you speak up?";
+				speecharray [4] = "Benny, yes, of course, how could I forget him!";
+				speecharray [5] = "I used to watch him off my porch, what a handsome man";
+				speecharray [6] = "Well I saw the felon coming round these past few days, until the death";
+				speecharray [7] = "Dear, sometimes you have to put a smile on your face and walk away";
+				speecharray [8] = "Well, on the bright side...";
+				speecharray [9] = "It's just a fact of life, doesn't make it any less beautiful.";
+
+				function talk() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[t], 25, 50, 700, 300);
+
+				var img = document.getElementById("oldwoman");
+				ctx.drawImage(img, 100, 100);
+
+				 	if (t == 0) {
+				 		var name = document.getElementById('name'); //done
+				 		name.style.visibility = "visible";
+				 		t++;
+				 	} else if (t==3) {
+				 		var perk = document.getElementById('perk');
+				 		perk.style.visibility = "visible";
+				 		t=0;
+				 	}
+				 	else if (t >= 0 && t < 3) {
+				 			t++;
+				 	}
+				}
+				function question() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[q], 25, 50, 700, 300);
+
+				var img = document.getElementById("oldwoman");
+				ctx.drawImage(img, 100, 100);
+
+				if (q == 5) {
+				 		var relation = document.getElementById('relation'); //done
+				 		relation.style.visibility = "visible";
+				 		
+				 		q ++;
+				 	}
+				 	else if (q >= 4 && q < 6) {
+				 		q++;
+				 	} else {
+				 		q = 4;
+				 	}
+
+				}
+				function intimidate() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[i], 25, 50, 700, 300);
+
+				var img = document.getElementById("oldwoman");
+				ctx.drawImage(img, 100, 100);
+
+				 	if (i == 9) {
+				 		var temp = document.getElementById('temperament');
+				 		temp.style.visibility = "visible";
+				 		i = 7;
+				 	} else if (i >= 7){
+				 		i++;
+				 	}
+
+				}
+				function leave() {
+					window.close('encounter6.html');
+				}
+			function onpageload() {
+
+				  var img = document.getElementById("oldwoman");
+				  ctx.drawImage(img, 100, 100);
+
+			}
+			</script>
+		</div>
+		<a onclick="talk()" style="top: 300px; left: 100px;">Talk</a>
+		<a onclick="question()" style="top: 350px; left: 100px">Question</a>
+		<a onclick="intimidate()" style="top: 400px; left: 100px;">Intimidate</a>
+		<a onclick="leave()" style="top: 400px; left: 600px;">Leave</a>
+	</body>
+</html>

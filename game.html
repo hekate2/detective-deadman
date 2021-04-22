@@ -1,0 +1,317 @@
+<!DOCTYPEhtml>
+<html>
+<title>DETECTIVE DEADMAN</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
+	<head>
+		<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		html {
+			cursor: url("auto.gif"), auto;
+		}
+		body {
+			overflow: hidden;
+		}
+		canvas {
+			background-color: #000;
+			border: 1px solid;
+			border-image-source: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,136,0,1) 16%, rgba(249,255,0,1) 32%, rgba(5,255,0,1) 48%, rgba(3,242,239,1) 64%, rgba(5,26,248,1) 81%, rgba(149,0,255,1) 100%);
+			border-image-slice: 1;
+			display:inline-block;
+		}
+		#envelope {
+			width: 230px;
+			height: 480px;
+			background-color: #000;
+			border: 1px solid;
+			border-image-source: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,136,0,1) 16%, rgba(249,255,0,1) 32%, rgba(5,255,0,1) 48%, rgba(3,242,239,1) 64%, rgba(5,26,248,1) 81%, rgba(149,0,255,1) 100%);
+			border-image-slice: 1;
+			padding: 10px;
+			font-family: 'cubixcodemedium';
+			font-size: 20pt; 
+			color: red;
+			position: absolute;
+			top: 0;
+			left: 751px;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="overlap">
+			<canvas id="myCanvas" width="750" height="500">
+				Your browser does not support the HTML5 canvas tag.
+			</canvas>
+			<div id="envelope">
+				Welcome to town, detective deadman! You're investigating the murder of one Benny Talgate. Use the WASD or arrow keys to talk to talk to the locals. Once you're ready to convict, press the button below:
+				<br>
+				<input type="button" value="convict!" onclick="convict()">
+			</div>
+		</div>
+		<script>
+		var c = document.getElementById("myCanvas");
+		var ctx = c.getContext("2d");
+		
+		var deltaX = 0;
+		var deltaY = 0;
+
+		var randomlefts = [50, 100, 150, 200, 250, 300, 350, 400, 450];
+		//Selects a single random number
+		var randomleft = randomlefts[Math.floor(Math.random()*randomlefts.length)];
+		var randomtops = [25, 75, 125, 175, 225, 275, 325, 375, 425, 475];
+		var randomtop = randomtops[Math.floor(Math.random()*randomtops.length)];
+
+  		window.addEventListener("keydown", moveSomething, false);
+
+		function moveSomething(e) {
+		    switch(e.keyCode) {
+		    	//WASD Controls
+		    	case 65: // A key pressed
+		    		left();
+		    		break;
+		    	case 87: // W key pressed
+		    		up();
+		    		break;
+		    	case 68: // D key pressed
+		    		right();
+		    		break;
+		    	case 83:  // S key pressed
+		    		down();
+		    		break;
+		    	//Arrow Controls
+		        case 37:
+		            left();// left key pressed
+		            break;
+		        case 38:
+		            up();// up key pressed
+		            break;
+		        case 39:
+		            right();// right key pressed
+		            break;
+		        case 40:
+		            down();// down key pressed
+		            break;  
+		    }  
+		    e.preventDefault(); 
+
+		    drawChar();
+		} 
+		
+		function drawChar(){ //Draws characters
+
+			ctx.clearRect(0, 0, c.width, c.height);
+
+			var charleft = 20 + deltaX;
+			var chartop = 20 + deltaY;
+				
+			ctx.beginPath(); //Declare shape drawing
+			ctx.fillStyle = "red"; //Shape parameters 
+			ctx.fillRect(charleft, chartop, 13, 13);
+			ctx.stroke(); //Draw Shape
+
+			
+			ctx.beginPath();
+			ctx.fillStyle = "yellow";
+			ctx.fillRect(randomleft, randomtop, 13 , 13); //selects from array randomlefts and randomtops
+			ctx.stroke();
+
+			
+			ctx.beginPath();
+			ctx.moveTo(randomtop + 7, randomleft);
+			ctx.lineTo(randomtop, randomleft + 13);
+			ctx.lineTo(randomtop + 13, randomleft + 13);
+			
+			ctx.closePath()
+
+			ctx.fillStyle = "white";
+			ctx.fill();
+
+			ctx.beginPath();
+			ctx.fillStyle = "lightskyblue";
+			ctx.fillRect(randomleft / 2, randomtop / 2, 13 , 13); //selects from array randomlefts and randomtops
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.fillStyle = "purple";
+			ctx.fillRect(randomleft / 2 + 50, randomtop / 2, 13, 13);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(307, 300);
+			ctx.lineTo(300, 313);
+			ctx.lineTo(313, 313);
+			
+			ctx.closePath()
+
+			ctx.fillStyle = "green";
+			ctx.fill();
+
+			ctx.beginPath();
+			ctx.fillStyle = "blue";
+			ctx.fillRect(randomleft * 3/2 + 45, randomtop / 3 + 54, 13, 13);
+			ctx.stroke();
+
+		}
+		
+		drawChar(); //run the code
+
+		function left() {
+
+			var charleft = 20 + deltaX;
+			var chartop = 20 + deltaY;
+
+			if (chartop <= randomtop + 13 && chartop + 13 >= randomtop && charleft <= randomleft + 13 && charleft + 13 >= randomleft) {
+				window.open('encounter2.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaX +=10;
+			} 	
+			if (chartop <= randomtop / 2 + 13 && chartop + 13 >= randomtop / 2 && charleft <= randomleft / 2 + 13 && charleft + 13 >= randomleft / 2) {
+				window.open('encounter3.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaX +=10;
+			}
+			if (chartop <= randomtop / 2 + 13 && chartop + 13 >= randomtop / 2 && charleft <= randomleft / 2 + 63 && charleft + 13 >= randomleft / 2 + 50) {
+				window.open('encounter4.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaX +=10;
+			} 			 					
+			if (chartop <= randomleft + 13 && chartop + 13 >= randomleft && charleft <= randomtop + 13 && charleft + 13 >= randomtop) {
+
+				window.open('encounter.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+
+				deltaX +=10;
+
+			} 
+			if (chartop <= 313 && chartop + 13 >= 300 && charleft <= 313 && charleft + 13 >= 300) {
+
+				window.open('encounter5.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+
+				deltaX +=10;
+
+			}
+			if (chartop <=  randomtop / 3 + 54 + 13 && chartop + 13 >=  randomtop / 3 + 54 && charleft <= randomleft * 3/2 + 45 + 13 && charleft + 13 >= randomleft * 3/2 + 45) {
+				window.open('encounter6.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaX +=10;
+			} 	
+			 else {
+				deltaX -=3;
+			} 
+
+		}
+		function right() {
+
+			var charleft = 20 + deltaX;
+			var chartop = 20 + deltaY;
+
+			if (chartop <= randomtop + 13 && chartop + 13 >= randomtop && charleft <= randomleft + 13 && charleft + 13 >= randomleft) {
+				window.open('encounter2.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaX -=10;
+			} 
+			if (chartop <= randomtop / 2 + 13 && chartop + 13 >= randomtop / 2 && charleft <= randomleft / 2 + 13 && charleft + 13 >= randomleft / 2) {
+				window.open('encounter3.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaX -=10;
+			} 		
+			if (chartop <= randomtop / 2 + 13 && chartop + 13 >= randomtop / 2 && charleft <= randomleft / 2 + 63 && charleft + 13 >= randomleft / 2 + 50) {
+				window.open('encounter4.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaX -=10;
+			} 			
+			if (chartop <= randomleft + 13 && chartop + 13 >= randomleft && charleft <= randomtop + 13 && charleft + 13 >= randomtop) {
+				window.open('encounter.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+
+				deltaX -=10;
+
+			}
+			if (chartop <= 313 && chartop + 13 >= 300 && charleft <= 313 && charleft + 13 >= 300) {
+
+				window.open('encounter5.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+
+				deltaX -=10;
+
+			}  
+			if (chartop <=  randomtop / 3 + 54 + 13 && chartop + 13 >=  randomtop / 3 + 54 && charleft <= randomleft * 3/2 + 45 + 13 && charleft + 13 >= randomleft * 3/2 + 45) {
+				window.open('encounter6.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaX -=10;
+			} 	
+			else {
+				deltaX +=3;
+			} 
+		}
+		function up() {
+
+			var charleft = 20 + deltaX;
+			var chartop = 20 + deltaY;
+
+			if (chartop <= randomtop + 13 && chartop + 13 >= randomtop && charleft <= randomleft + 13 && charleft + 13 >= randomleft) {
+				window.open('encounter2.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaY +=10;
+			} 
+			if (chartop <= randomtop / 2 + 13 && chartop + 13 >= randomtop / 2 && charleft <= randomleft / 2 + 13 && charleft + 13 >= randomleft / 2) {
+				window.open('encounter3.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaY +=10;
+			}
+			if (chartop <= randomtop / 2 + 13 && chartop + 13 >= randomtop / 2 && charleft <= randomleft / 2 + 63 && charleft + 13 >= randomleft / 2 + 50) {
+				window.open('encounter4.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaY +=10;
+			} 		 			
+			if (chartop <= randomleft + 13 && chartop + 13 >= randomleft && charleft <= randomtop + 13 && charleft + 13 >= randomtop) {
+				window.open('encounter.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+
+				deltaY +=10
+			}
+			if (chartop <= 313 && chartop + 13 >= 300 && charleft <= 313 && charleft + 13 >= 300) {
+
+				window.open('encounter5.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+
+				deltaY +=10;
+
+			} 
+			if (chartop <=  randomtop / 3 + 54 + 13 && chartop + 13 >=  randomtop / 3 + 54 && charleft <= randomleft * 3/2 + 45 + 13 && charleft + 13 >= randomleft * 3/2 + 45) {
+				window.open('encounter6.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaY +=10;
+			} 	
+			 else {
+				deltaY -=3;
+			}
+		}
+		function down() {
+
+			var charleft = 20 + deltaX;
+			var chartop = 20 + deltaY;
+
+			if (chartop <= randomtop + 13 && chartop + 13 >= randomtop && charleft <= randomleft + 13 && charleft + 13 >= randomleft) {
+				window.open('encounter2.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaY -=10;
+			} 
+			if (chartop <= randomtop / 2 + 13 && chartop + 13 >= randomtop / 2 && charleft <= randomleft / 2 + 13 && charleft + 13 >= randomleft / 2) {
+				window.open('encounter3.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaY -=10;
+			} 	
+			if (chartop <= randomtop / 2 + 13 && chartop + 13 >= randomtop / 2 && charleft <= randomleft / 2 + 63 && charleft + 13 >= randomleft / 2 + 50) {
+				window.open('encounter4.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaY -=10;
+			} 		
+			if (chartop <= randomleft + 13 && chartop + 13 >= randomleft && charleft <= randomtop + 13 && charleft + 13 >= randomtop) {
+				window.open('encounter.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+
+				deltaY -=10;
+			} 
+			if (chartop <= 313 && chartop + 13 >= 300 && charleft <= 313 && charleft + 13 >= 300) {
+
+				window.open('encounter5.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+
+				deltaY -=10;
+
+			} 
+			if (chartop <=  randomtop / 3 + 54 + 13 && chartop + 13 >=  randomtop / 3 + 54 && charleft <= randomleft * 3/2 + 45 + 13 && charleft + 13 >= randomleft * 3/2 + 45) {
+				window.open('encounter6.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+				deltaY -=10;
+			} 	
+			else {
+				deltaY +=3;
+			}
+		}
+		function convict() {
+			window.open('convict.html','','menubar=no,status=no,scrollbars=yes,top=150,left=200,toolbar=no,width=1002,height=502');
+		}
+		</script> 
+	</body>
+</html>

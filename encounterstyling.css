@@ -1,0 +1,37 @@
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		html {
+			cursor: url("auto.gif"), auto;
+		}
+		body {
+			overflow: hidden;
+		}
+		canvas {
+			background-color: #000;
+			border: 1px solid;
+			border-image-source: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,136,0,1) 16%, rgba(249,255,0,1) 32%, rgba(5,255,0,1) 48%, rgba(3,242,239,1) 64%, rgba(5,26,248,1) 81%, rgba(149,0,255,1) 100%);
+			border-image-slice: 1;
+		}
+		#envelope {
+			width: 230px;
+			height: 480px;
+			background-color: #000;
+			border: 1px solid;
+			border-image-source: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,136,0,1) 16%, rgba(249,255,0,1) 32%, rgba(5,255,0,1) 48%, rgba(3,242,239,1) 64%, rgba(5,26,248,1) 81%, rgba(149,0,255,1) 100%);
+			border-image-slice: 1;
+			padding: 10px;
+			font-family: "helloveticaregular";
+			font-size: 12pt; 
+			color: red;
+			position: absolute;
+			top: 0;
+			left: 751px;
+		}
+		a {
+			position: absolute;
+			color: red;
+			font-family: 'alagardmedium';
+			font-size: 25pt;
+		}

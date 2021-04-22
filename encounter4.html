@@ -1,0 +1,138 @@
+<!DOCTYPEhtml>
+<html>
+	<head>
+		<title>DETECTIVE DEADMAN</title>
+		<link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="encounterstyling.css">
+	</head>
+	</head>
+	<body onload="onpageload()">
+			<canvas id="myCanvas" width="750" height="500">
+				Your browser does not support the HTML5 canvas tag.
+			</canvas>
+			<img id="henry" src="henry.png" style="visibility: hidden">
+			<div id="envelope" style="color: white;">
+				<div id="name" style="visibility: hidden;">
+					NAME: henry
+				</div>
+				<div id="perk" style="visibility: hidden;">
+					PERKS: aloof
+				</div>
+				<div id="perka" style="visibility: hidden;">
+					promised to betsy
+				</div>
+				<div id="relation" style="visibility: hidden;">
+					RELATIONSHIP: none 
+				</div>
+				<div id="temperament" style="visibility: hidden;">
+					TEMPERAMENT: choleric
+				</div>
+			</div>
+			<script type="text/javascript">
+				var c = document.getElementById("myCanvas");
+				var ctx = c.getContext("2d");
+				 
+				var t = 0;
+				var q = 4;
+				var i = 7;
+				var speecharray = [];
+
+				speecharray [0] = "I'm henry, thank you very much";
+				speecharray [1] = "You know, it's a damn shame about Benny, but all I'm saying is at least it wasn't me.";
+				speecharray [2] = "You talked to Betsy? I don't know what she saw in the scumbag. I guess I shouldn't talk down the dead.";
+				speecharray [3] = "Everybody's on edge, but I just call it natural selection";
+				speecharray [4] = "I didn't know him so well, but he was a real shabby fellow.";
+				speecharray [5] = "Now, Betsy doesn't know this, but I was supposed to get her hand in marraige. Talked to her old man and everything";
+				speecharray [6] = "Now he's out of the way, I don't have to worry about her feelings and whatever";
+				speecharray [7] = "You got a mouth on you inspector";
+				speecharray [8] = "I'm innocent, but I'll give you a reason to lock me up!";
+				speecharray [9] = "*he throws a punch, misses*";
+
+				function talk() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[t], 25, 50, 700, 300);
+
+				var img = document.getElementById("henry");
+				ctx.drawImage(img, 100, 100);
+
+				 	if (t == 0) {
+				 		var name = document.getElementById('name'); //done
+				 		name.style.visibility = "visible";
+				 		t++;
+				 	} else if ( t == 3) {
+				 		var perk = document.getElementById('perk'); //done
+				 		perk.style.visibility = "visible";
+				 		t = 0;
+				 	}
+				 	else if (t >= 0 && t <= 3) {
+				 			t++;
+				 		} else {
+				 			t = 0;
+				 		}
+				}
+				function question() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[q], 25, 50, 700, 300);
+
+				var img = document.getElementById("henry");
+				ctx.drawImage(img, 100, 100);
+
+				if (q == 4) {
+				 		var relation = document.getElementById('relation'); //done
+				 		relation.style.visibility = "visible";
+				 		
+				 		q ++;
+				 	} else if (q == 5) {
+				 		var perka = document.getElementById('perka');
+				 		perka.style.visibility = "visible";
+				 		q++
+				 	}
+				 	 else if (q >= 4 && q <= 5) {
+				 		q++;
+				 	} else {
+				 		q = 4;
+				 	}
+
+				}
+				function intimidate() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[i], 25, 50, 700, 300);
+
+				var img = document.getElementById("henry");
+				ctx.drawImage(img, 100, 100);
+
+				 	if (i == 9) {
+				 		var temp = document.getElementById('temperament');
+				 		temp.style.visibility = "visible";
+				 		i = 7;
+				 	} else if (i >= 7){
+				 		i++;
+				 	}
+
+				}
+				function leave() {
+					window.close('encounter4.html');
+				}
+			function onpageload() {
+
+				  var img = document.getElementById("henry");
+				  ctx.drawImage(img, 100, 100);
+
+			}
+			</script>
+		</div>
+		<a onclick="talk()" style="top: 300px; left: 100px;">Talk</a>
+		<a onclick="question()" style="top: 350px; left: 100px">Question</a>
+		<a onclick="intimidate()" style="top: 400px; left: 100px;">Intimidate</a>
+		<a onclick="leave()" style="top: 400px; left: 600px;">Leave</a>
+	</body>
+</html>

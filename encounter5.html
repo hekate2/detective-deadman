@@ -1,0 +1,138 @@
+<!DOCTYPEhtml>
+<html>
+	<head>
+		<title>DETECTIVE DEADMAN</title>
+		<link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="encounterstyling.css">
+	</head>
+	</head>
+	<body onload="onpageload()">
+			<canvas id="myCanvas" width="750" height="500">
+				Your browser does not support the HTML5 canvas tag.
+			</canvas>
+			<img id="esme" src="esme.png" style="visibility: hidden">
+			<div id="envelope" style="color: white;">
+				<div id="name" style="visibility: hidden;">
+					NAME: esme
+				</div>
+				<div id="perk" style="visibility: hidden;">
+					PERKS: paranoid
+				</div>
+				<div id="occupation" style="visibility: hidden;">
+					OCCUPATION: coroner
+				</div>
+				<div id="relation" style="visibility: hidden;">
+					RELATIONSHIP: none 
+				</div>
+				<div id="temperament" style="visibility: hidden;">
+					TEMPERAMENT: phlegmatic
+				</div>
+			</div>
+			<script type="text/javascript">
+				var c = document.getElementById("myCanvas");
+				var ctx = c.getContext("2d");
+				 
+				var t = 0;
+				var q = 4;
+				var i = 7;
+				var speecharray = [];
+
+				speecharray [0] = "My name? Esme. Look I gotta talk to you man";
+				speecharray [1] = "Heard a man died here, and I gotta say I'm not surprised.";
+				speecharray [2] = "You notice how all here's so angular? So perfect?";
+				speecharray [3] = "It's all part of their plan";
+				speecharray [4] = "I didn't know him, but I know some squares had beef with him";
+				speecharray [5] = "I'm the coroner around here, and I gotta say I've never seen anything like it";
+				speecharray [6] = "The victim was cut up so exactly, I'd say the killer had a grudge, and wanted him to suffer!";
+				speecharray [7] = "Listen, I'm not the man you want";
+				speecharray [8] = "I understand your frustration";
+				speecharray [9] = "Inspector I will cooperate, just hear me out";
+
+				function talk() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[t], 25, 50, 700, 300);
+
+				var img = document.getElementById("esme");
+				ctx.drawImage(img, 100, 100);
+
+				 	if (t == 0) {
+				 		var name = document.getElementById('name'); //done
+				 		name.style.visibility = "visible";
+				 		t++;
+				 	} else if ( t == 3) {
+				 		var perk = document.getElementById('perk'); //done
+				 		perk.style.visibility = "visible";
+				 		t = 0;
+				 	}
+				 	else if (t >= 0 && t <= 3) {
+				 			t++;
+				 		} else {
+				 			t = 0;
+				 		}
+				}
+				function question() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[q], 25, 50, 700, 300);
+
+				var img = document.getElementById("esme");
+				ctx.drawImage(img, 100, 100);
+
+				if (q == 4) {
+				 		var relation = document.getElementById('relation'); //done
+				 		relation.style.visibility = "visible";
+				 		
+				 		q ++;
+				 	} else if (q == 5) {
+				 		var work = document.getElementById('occupation');
+				 		work.style.visibility = "visible";
+				 		q++;
+				 	} 
+				 	else if (q >= 4 && q < 6) {
+				 		q++;
+				 	} else {
+				 		q = 4;
+				 	}
+
+				}
+				function intimidate() {
+
+				ctx.clearRect(0, 0, c.width, c.height);
+				ctx.font = "12pt helloveticaregular";
+				ctx.fillStyle = "red";
+				ctx.fillText(speecharray[i], 25, 50, 700, 300);
+
+				var img = document.getElementById("esme");
+				ctx.drawImage(img, 100, 100);
+
+				 	if (i == 9) {
+				 		var temp = document.getElementById('temperament');
+				 		temp.style.visibility = "visible";
+				 		i = 7;
+				 	} else if (i >= 7){
+				 		i++;
+				 	}
+
+				}
+				function leave() {
+					window.close('encounter5.html');
+				}
+			function onpageload() {
+
+				  var img = document.getElementById("esme");
+				  ctx.drawImage(img, 100, 100);
+
+			}
+			</script>
+		</div>
+		<a onclick="talk()" style="top: 300px; left: 100px;">Talk</a>
+		<a onclick="question()" style="top: 350px; left: 100px">Question</a>
+		<a onclick="intimidate()" style="top: 400px; left: 100px;">Intimidate</a>
+		<a onclick="leave()" style="top: 400px; left: 600px;">Leave</a>
+	</body>
+</html>
